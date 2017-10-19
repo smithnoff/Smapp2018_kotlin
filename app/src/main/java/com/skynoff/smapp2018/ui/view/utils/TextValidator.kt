@@ -16,7 +16,7 @@ companion object {
         inputETArray.forEach {
 
             if (it.text.isEmpty()){
-                it.error = "No puede estar vacio"
+                it.error = "No puede estar vacio."
                 it.requestFocus()
          isValid=true
             }

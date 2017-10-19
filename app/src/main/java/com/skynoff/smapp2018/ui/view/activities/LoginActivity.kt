@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     lateinit var db: FirebaseFirestore
-    lateinit var registerBt :TextView
+    lateinit var registerBt: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -59,9 +59,9 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             }
             false
         })
-        registerBt=findViewById(R.id.tv_register)
+        registerBt = findViewById(R.id.tv_register)
         registerBt.setOnClickListener {
-            startActivity(Intent(this,RegisterActivity::class.java))
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
 
         email_sign_in_button.setOnClickListener { attemptLogin() }
@@ -152,13 +152,29 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true)
-            db.collection("usuarios").document("GoH6rkRGhTbDwrlCP4Pj").get().addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    validate(task.result.get("correo") == emailStr && task.result.get("clave") == passwordStr)
+            db.collection("usuarios").get().addOnSuccessListener { snapshot ->
+                for (document in snapshot.documents) {
+                    val data = document.data
+                    val skipRope = data["correo"] as String
+                    val kettle = data["clave"] as String
+
+                    Log.e("son: ", skipRope+kettle+" -> "+emailStr+passwordStr)
+
+                   validate(skipRope==emailStr && kettle==passwordStr)
 
                 }
 
             }
+           /* db.collection("usuarios").document().get().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                        validate(task.result.get("correo") == emailStr && task.result.get("clave") == passwordStr)
+
+
+
+
+                }
+
+            }*/
         }
 
 
