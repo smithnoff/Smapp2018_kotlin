@@ -25,7 +25,11 @@
         </activity>
         <activity
             android:name=".ui.view.activities.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".ui.view.activities.MainActivity"
+            android:label="@string/title_activity_main" />
+        <activity android:name=".ui.view.activities.RegisterActivity"></activity>
     </application>
 
 </manifest>

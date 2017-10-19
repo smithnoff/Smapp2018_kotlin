@@ -23,7 +23,17 @@ import android.widget.TextView
 
 import java.util.ArrayList
 import android.Manifest.permission.READ_CONTACTS
+import android.content.Intent
+import android.support.annotation.NonNull
+import android.support.v4.content.ContextCompat.startActivity
+import android.util.Log
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
 import com.skynoff.smapp2018.R
+import com.skynoff.smapp2018.R.id.*
+import com.skynoff.smapp2018.background.firebase.models.Users
 
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -34,12 +44,13 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private var mAuthTask: UserLoginTask? = null
-
+    lateinit var db: FirebaseFirestore
+    lateinit var registerBt :TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         // Set up the login form.
+        db = FirebaseFirestore.getInstance()
         populateAutoComplete()
         password.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->
             if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
@@ -48,6 +59,10 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             }
             false
         })
+        registerBt=findViewById(R.id.tv_register)
+        registerBt.setOnClickListener {
+            startActivity(Intent(this,RegisterActivity::class.java))
+        }
 
         email_sign_in_button.setOnClickListener { attemptLogin() }
     }
@@ -96,9 +111,9 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
      * errors are presented and no actual login attempt is made.
      */
     private fun attemptLogin() {
-        if (mAuthTask != null) {
-            return
-        }
+        /* if (mAuthTask != null) {
+             return
+         }*/
 
         // Reset errors.
         email.error = null
@@ -137,9 +152,29 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true)
-            mAuthTask = UserLoginTask(emailStr, passwordStr)
-            mAuthTask!!.execute(null as Void?)
+            db.collection("usuarios").document("GoH6rkRGhTbDwrlCP4Pj").get().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    validate(task.result.get("correo") == emailStr && task.result.get("clave") == passwordStr)
+
+                }
+
+            }
         }
+
+
+    }
+
+    private fun validate(valid: Boolean) {
+        if (valid) {
+            showProgress(false)
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        } else {
+            showProgress(false)
+            password.requestFocus()
+            password.error = getString(R.string.error_incorrect_password)
+        }
+
     }
 
     private fun isEmailValid(email: String): Boolean {
@@ -242,31 +277,37 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
      */
     inner class UserLoginTask internal constructor(private val mEmail: String, private val mPassword: String) : AsyncTask<Void, Void, Boolean>() {
 
+        lateinit var dbf: FirebaseFirestore
+        var fCorreo: String = ""
+        var fClave: String = ""
+
+        override fun onPreExecute() {
+            dbf = FirebaseFirestore.getInstance()
+            dbf.collection("usuarios").document("GoH6rkRGhTbDwrlCP4Pj").get().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    fCorreo = task.result.get("correo").toString()
+                    fClave = task.result.get("clave").toString()
+                    doInBackground()
+                }
+
+            }
+        }
+
         override fun doInBackground(vararg params: Void): Boolean? {
             // TODO: attempt authentication against a network service.
+            return fCorreo == mEmail && fClave == mPassword
 
-            try {
-                // Simulate network access.
-                Thread.sleep(2000)
-            } catch (e: InterruptedException) {
-                return false
-            }
 
-            return DUMMY_CREDENTIALS
-                    .map { it.split(":") }
-                    .firstOrNull { it[0] == mEmail }
-                    ?.let {
-                        // Account exists, return true if the password matches.
-                        it[1] == mPassword
-                    }
-                    ?: true
         }
 
         override fun onPostExecute(success: Boolean?) {
+/*
             mAuthTask = null
+*/
             showProgress(false)
 
             if (success!!) {
+                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                 finish()
             } else {
                 password.error = getString(R.string.error_incorrect_password)
@@ -275,7 +316,9 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         }
 
         override fun onCancelled() {
+/*
             mAuthTask = null
+*/
             showProgress(false)
         }
     }
