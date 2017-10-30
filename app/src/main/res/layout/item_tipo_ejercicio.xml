@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:layout_marginTop="12dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/activity_horizontal_margin"
+    >
+    <LinearLayout
+        android:padding="8dp"
+        android:background="@color/primaryDarkColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="3">
+            <ImageView
+                android:id="@+id/tipo_ejercicio_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/interativos"/>
+            <TextView
+                android:id="@+id/tipo_ejercicio_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryTextColor"
+                android:text="Tipo de Ejercicio"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                android:textSize="26sp"/>
+        </TableRow>
+        <TextView
+            android:id="@+id/descripcion_ejercicio_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primaryTextColor"
+            android:text="Descripcion del contenidode los ejercicios"/>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

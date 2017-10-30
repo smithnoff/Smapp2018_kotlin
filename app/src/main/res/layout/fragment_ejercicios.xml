@@ -1,0 +1,22 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.skynoff.smapp2018.ui.view.fragments.EjerciciosFragment">
+<LinearLayout
+    android:padding="12dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <include layout="@layout/item_tipo_ejercicio"
+        android:id="@+id/ejercicios_interactivos"/>
+    <include
+        layout="@layout/item_tipo_ejercicio"
+        android:id="@+id/ejercicios_resueltos"/>
+    <include
+        layout="@layout/item_tipo_ejercicio"
+        android:id="@+id/ejercicios_propuestos"/>
+</LinearLayout>
+
+
+</ScrollView>

@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/mini_splash"
     tools:context="com.skynoff.smapp2018.ui.view.activities.LoginActivity">
 
     <!-- Login progress -->
@@ -20,11 +21,14 @@
         android:visibility="gone" />
 
     <ScrollView
+        android:background="@drawable/mini_splash"
+
         android:id="@+id/login_form"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:padding="18dp"
             android:layout_marginTop="70dp"
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
@@ -32,6 +36,7 @@
             android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout
+                android:textColorHint="@color/colorAccent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -42,11 +47,13 @@
                     android:hint="@string/prompt_email"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
+                    android:textColor="@color/colorAccent"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:textColorHint="@color/colorAccent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -60,6 +67,7 @@
                     android:imeOptions="actionUnspecified"
                     android:inputType="textPassword"
                     android:maxLines="1"
+                    android:textColor="@color/colorAccent"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
@@ -75,10 +83,10 @@
             <TextView
                 android:layout_marginTop="18dp"
                 android:gravity="center"
-                android:textSize="14sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:id="@+id/tv_register"
-                android:text="@string/action_sign_uo"
+                android:text="@string/sing_up"
                 android:textColor="@color/colorAccent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

@@ -24,12 +24,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".ui.view.activities.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
             android:name=".ui.view.activities.MainActivity"
             android:label="@string/title_activity_main" />
-        <activity android:name=".ui.view.activities.RegisterActivity"></activity>
+        <activity android:name=".ui.view.activities.RegisterActivity" />
+        <activity android:name=".ui.view.activities.LeccionesActivity"></activity>
     </application>
 
 </manifest>

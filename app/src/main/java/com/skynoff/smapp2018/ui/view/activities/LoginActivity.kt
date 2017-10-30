@@ -155,12 +155,12 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             db.collection("usuarios").get().addOnSuccessListener { snapshot ->
                 for (document in snapshot.documents) {
                     val data = document.data
-                    val skipRope = data["correo"] as String
-                    val kettle = data["clave"] as String
+                    val fEmail = data["correo"] as String
+                    val fClave = data["clave"] as String
 
-                    Log.e("son: ", skipRope+kettle+" -> "+emailStr+passwordStr)
+                    Log.e("son: ", fEmail+fClave+" -> "+emailStr+passwordStr)
 
-                   validate(skipRope==emailStr && kettle==passwordStr)
+                   validate(fEmail==emailStr && fClave==passwordStr)
 
                 }
 

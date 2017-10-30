@@ -2,20 +2,30 @@
     <string name="app_name">Smapp2018</string>
     <string name="title_activity_login">Sign in</string>
 
-    <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">contraseña (opcional)</string>
+    <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in">Ingresar</string>
-    <string name="action_sign_uo">Registrarse</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">Email invalido.</string>
-    <string name="error_invalid_password">contraseña muy corta.</string>
-    <string name="error_incorrect_password">Contraseña incorrecta.</string>
-    <string name="error_field_required">Campo requerido.</string>
-    <string name="permission_rationale">"Se necesitan permisos para acceder a contactos."
+    <string name="action_sign_in_short">Ingresa</string>
+    <string name="error_invalid_email">Email invalido</string>
+    <string name="error_invalid_password">Contraseña demasiado corta.</string>
+    <string name="error_incorrect_password">Contraseña incorrecta</string>
+    <string name="error_field_required">Campo requerido</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
     </string>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_main">Smapp C#</string>
+    <string name="title_home">Inicio</string>
+    <string name="title_dashboard">Lecciones</string>
+    <string name="title_notifications">Ejercicios</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_settings">Configuración</string>
+    <string name="sing_up">Registrarse</string>
+    <string name="desc_interactivos">Aqui podras encontrar ejercicios interactivos y probar cuanto Ki, chacra nivel tienes, ten cuidado pues no sabemos que tan poderoso eres.</string>
+    <string name="desc_propuestos">Asi que crees que eres el mejor?, demuestralo resolviendo todos los ejercicios que tenemos para ti.</string>
+    <string name="desc_resueltos">Compara lo que has hecho con lo que deberias tener y observa si has superado al maestro.</string>
+    <string name="tipo_interactivo">Ejercicios Interactivos</string>
+    <string name="tipo_propuestos">Ejercicios Propuestos</string>
+    <string name="tipo_resueltos">Ejericios Resueltos</string>
 </resources>

@@ -4,22 +4,37 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import com.skynoff.smapp2018.R
+import com.skynoff.smapp2018.ui.view.fragments.AsignacionFragment
+import com.skynoff.smapp2018.ui.view.fragments.EjerciciosFragment
+import com.skynoff.smapp2018.ui.view.fragments.NivelLeccionesFragment
 import kotlinx.android.synthetic.main.activity_main.*
+import com.google.firebase.firestore.FirebaseFirestoreSettings
+
+
 
 class MainActivity : AppCompatActivity() {
+    lateinit var fragment:android.support.v4.app.Fragment
+    lateinit var transaction:android.support.v4.app.FragmentTransaction
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        transaction=supportFragmentManager.beginTransaction()
         when (item.itemId) {
             R.id.navigation_home -> {
-                message.setText(R.string.title_home)
+                fragment=AsignacionFragment()
+                transaction.replace(R.id.fragment_container,fragment)
+                transaction.commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
-                message.setText(R.string.title_dashboard)
+                fragment= NivelLeccionesFragment()
+                transaction.replace(R.id.fragment_container,fragment)
+                transaction.commit()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
-                message.setText(R.string.title_notifications)
+                fragment= EjerciciosFragment()
+                transaction.replace(R.id.fragment_container,fragment)
+                transaction.commit()
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -29,7 +44,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        fragment=AsignacionFragment()
+        transaction=supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_container,fragment)
+        transaction.commit()
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 }
