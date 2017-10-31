@@ -7,8 +7,6 @@ import android.content.pm.PackageManager
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.app.LoaderManager.LoaderCallbacks
-import android.content.CursorLoader
-import android.content.Loader
 import android.database.Cursor
 import android.net.Uri
 import android.os.AsyncTask
@@ -23,7 +21,8 @@ import android.widget.TextView
 
 import java.util.ArrayList
 import android.Manifest.permission.READ_CONTACTS
-import android.content.Intent
+import android.content.*
+import android.preference.PreferenceManager
 import android.support.annotation.NonNull
 import android.support.v4.content.ContextCompat.startActivity
 import android.util.Log
@@ -38,7 +37,7 @@ import com.skynoff.smapp2018.background.firebase.models.Users
 import kotlinx.android.synthetic.main.activity_login.*
 
 /**
- * A login screen that offers login via email/password.
+ * A login screen that offers login via nombre/puntaje.
  */
 class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
     /**
@@ -46,11 +45,16 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
      */
     lateinit var db: FirebaseFirestore
     lateinit var registerBt: TextView
+    lateinit var sharedPref:SharedPreferences.Editor
+    val PREFS_FILENAME = "com.skynoff.smapp2018.prefs"
+    lateinit var prefs:SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         // Set up the login form.
         db = FirebaseFirestore.getInstance()
+        prefs = PreferenceManager.getDefaultSharedPreferences(this)
+
         populateAutoComplete()
         password.setOnEditorActionListener(TextView.OnEditorActionListener { _, id, _ ->
             if (id == EditorInfo.IME_ACTION_DONE || id == EditorInfo.IME_NULL) {
@@ -107,7 +111,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
 
     /**
      * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
+     * If there are form errors (invalid nombre, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
     private fun attemptLogin() {
@@ -126,14 +130,14 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         var cancel = false
         var focusView: View? = null
 
-        // Check for a valid password, if the user entered one.
+        // Check for a valid puntaje, if the user entered one.
         if (!TextUtils.isEmpty(passwordStr) && !isPasswordValid(passwordStr)) {
             password.error = getString(R.string.error_invalid_password)
             focusView = password
             cancel = true
         }
 
-        // Check for a valid email address.
+        // Check for a valid nombre address.
         if (TextUtils.isEmpty(emailStr)) {
             email.error = getString(R.string.error_field_required)
             focusView = email
@@ -155,6 +159,9 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             db.collection("usuarios").get().addOnSuccessListener { snapshot ->
                 for (document in snapshot.documents) {
                     val data = document.data
+                    val editor=prefs!!.edit()
+                    editor.putInt("nivel",data["nivel"].toString().toInt())
+                    editor.apply()
                     val fEmail = data["correo"] as String
                     val fClave = data["clave"] as String
 
@@ -247,12 +254,12 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
                 Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
                         ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
 
-                // Select only email addresses.
+                // Select only nombre addresses.
                 ContactsContract.Contacts.Data.MIMETYPE + " = ?", arrayOf(ContactsContract.CommonDataKinds.Email
                 .CONTENT_ITEM_TYPE),
 
-                // Show primary email addresses first. Note that there won't be
-                // a primary email address if the user hasn't specified one.
+                // Show primary nombre addresses first. Note that there won't be
+                // a primary nombre address if the user hasn't specified one.
                 ContactsContract.Contacts.Data.IS_PRIMARY + " DESC")
     }
 

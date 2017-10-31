@@ -36,7 +36,7 @@
             android:id="@+id/descripcion_ejercicio_txt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/primaryTextColor"
+            android:textColor="@color/colorAccent"
             android:text="Descripcion del contenidode los ejercicios"/>
     </LinearLayout>
 

@@ -19,7 +19,7 @@ class RegisterModel : RegisterCallback.Model {
     override fun registerUser(user: Users) {
 
         var map :HashMap<String,Any> = hashMapOf()
-        map.put("alias",user.alias)
+        map.put("tipo",user.alias)
         map.put("clave",user.clave)
         map.put("correo",user.email)
         map.put("habilitado",user.habilitado)

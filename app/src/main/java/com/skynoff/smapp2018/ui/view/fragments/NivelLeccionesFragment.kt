@@ -1,6 +1,7 @@
 package com.skynoff.smapp2018.ui.view.fragments
 
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -15,6 +16,7 @@ import android.widget.ImageView
 import com.skynoff.smapp2018.R
 import com.skynoff.smapp2018.ui.presenter.callbacks.LeccionesCallback
 import com.skynoff.smapp2018.ui.presenter.interactors.LeccionesPresenter
+import com.skynoff.smapp2018.ui.view.activities.LeccionesActivity
 
 
 /**
@@ -46,10 +48,29 @@ class NivelLeccionesFragment : Fragment(){
             imagenAdvanced.background = resources.getDrawable(R.drawable.for_advanced)
             imagenExpert.background = resources.getDrawable(R.drawable.hard_exercise)
         }
+
+
+        cardviewBasic.setOnClickListener {
+            startLecciones("1")
+        }
+        cardviewMidle.setOnClickListener {
+            startLecciones("2")
+        }
+        cardviewAdvanced.setOnClickListener {
+            startLecciones("3")
+        }
+        cardviewExpert.setOnClickListener{
+            startLecciones("4")
+        }
+
+
             return v
 
     }
 
+    private fun startLecciones(nivel: String) {
+        startActivity(Intent(context,LeccionesActivity::class.java).putExtra("nivel",nivel))
+    }
 
 
 }// Required empty public constructor

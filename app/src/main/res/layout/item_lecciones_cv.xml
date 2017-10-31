@@ -33,7 +33,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:id="@+id/tv_lec_content"
-                android:textColor="@color/primaryTextColor"
+                android:textColor="@color/colorAccent"
                 android:text="Descripcion de la leccion para principiantes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

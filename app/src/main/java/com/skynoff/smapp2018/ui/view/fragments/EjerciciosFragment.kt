@@ -1,6 +1,7 @@
 package com.skynoff.smapp2018.ui.view.fragments
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.CardView
@@ -11,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 
 import com.skynoff.smapp2018.R
+import com.skynoff.smapp2018.ui.view.activities.InteractivosActivity
 
 
 /**
@@ -50,7 +52,7 @@ class EjerciciosFragment : Fragment() {
 
         tipoInter=interactivos.findViewById(R.id.tipo_ejercicio_txt)
         tipoProp=propuestos.findViewById(R.id.tipo_ejercicio_txt)
-        tipoRes=tipoRes.findViewById(R.id.tipo_ejercicio_txt)
+        tipoRes=resueltos.findViewById(R.id.tipo_ejercicio_txt)
 
 
         setText()
@@ -66,6 +68,14 @@ class EjerciciosFragment : Fragment() {
         tipoInter.text=getString(R.string.tipo_interactivo)
         tipoProp.text=getString(R.string.tipo_propuestos)
         tipoRes.text=getString(R.string.tipo_resueltos)
+
+        interactivos.setOnClickListener{
+            startActivity(Intent(context,InteractivosActivity::class.java))
+        }
+
+
+
+
     }
 
 }// Required empty public constructor

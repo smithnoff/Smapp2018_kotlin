@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primaryDarkColor"
-    tools:context="com.skynoff.smapp2018.ui.view.activities.RegisterActivity">
+    tools:context="com.skynoff.smapp2018.ui.view.activities.CrearAsignacionActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -21,7 +21,7 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre"
+            android:hint="Descripcion"
             android:textColorHint="@color/colorAccent">
 
             <android.support.design.widget.TextInputEditText
@@ -35,7 +35,7 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Apellido"
+            android:hint="Fecha"
             android:textColorHint="@color/colorAccent">
 
             <android.support.design.widget.TextInputEditText
@@ -49,7 +49,7 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="Nombre"
             android:textColorHint="@color/colorAccent">
 
             <android.support.design.widget.TextInputEditText
@@ -64,7 +64,7 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Contraseña"
+            android:hint="Puntaje"
             android:textColorHint="@color/colorAccent">
 
             <android.support.design.widget.TextInputEditText
@@ -73,7 +73,7 @@
                 android:id="@+id/tet_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
+                android:inputType="number" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -94,7 +94,7 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Alias(opcional)"
+            android:hint="Tipo de Evaluacion"
             android:textColorHint="@color/colorAccent">
 
             <android.support.design.widget.TextInputEditText
@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="18dp"
-            android:text="Registrar" />
+            android:text="Crear Asignacion" />
 
 
     </LinearLayout>

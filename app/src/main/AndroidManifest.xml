@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.skynoff.smapp2018">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <!-- To auto-complete nombremail text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -24,14 +24,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:windowSoftInputMode="adjustPan"
             android:name=".ui.view.activities.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.view.activities.MainActivity"
             android:label="@string/title_activity_main" />
         <activity android:name=".ui.view.activities.RegisterActivity" />
-        <activity android:name=".ui.view.activities.LeccionesActivity"></activity>
+        <activity android:name=".ui.view.activities.LeccionesActivity" />
+        <activity android:name=".ui.view.activities.InteractivosActivity" />
+        <activity android:name=".ui.view.activities.CrearAsignacionActivity"></activity>
     </application>
 
 </manifest>

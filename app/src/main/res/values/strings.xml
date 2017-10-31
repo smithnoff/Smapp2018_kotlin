@@ -28,4 +28,5 @@
     <string name="tipo_interactivo">Ejercicios Interactivos</string>
     <string name="tipo_propuestos">Ejercicios Propuestos</string>
     <string name="tipo_resueltos">Ejericios Resueltos</string>
+    <string name="nivel_u">nivel</string>
 </resources>
