@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.google.firebase.iid.FirebaseInstanceIdService
 import com.skynoff.smapp2018.R
 
 class SplashActivity : AppCompatActivity() {

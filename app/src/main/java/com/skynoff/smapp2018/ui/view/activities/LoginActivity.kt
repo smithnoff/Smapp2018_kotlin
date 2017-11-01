@@ -30,8 +30,10 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.iid.FirebaseInstanceIdService
 import com.skynoff.smapp2018.R
 import com.skynoff.smapp2018.R.id.*
+import com.skynoff.smapp2018.background.firebase.methods.PushNotifications
 import com.skynoff.smapp2018.background.firebase.models.Users
 
 import kotlinx.android.synthetic.main.activity_login.*
@@ -45,9 +47,9 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
      */
     lateinit var db: FirebaseFirestore
     lateinit var registerBt: TextView
-    lateinit var sharedPref:SharedPreferences.Editor
+    lateinit var sharedPref: SharedPreferences.Editor
     val PREFS_FILENAME = "com.skynoff.smapp2018.prefs"
-    lateinit var prefs:SharedPreferences
+    lateinit var prefs: SharedPreferences
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -67,6 +69,9 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         registerBt.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
+        val push = PushNotifications()
+        push.onTokenRefresh()
+        startActivity(Intent(this, MainActivity::class.java))
 
         email_sign_in_button.setOnClickListener { attemptLogin() }
     }
@@ -75,6 +80,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         if (!mayRequestContacts()) {
             return
         }
+
 
         loaderManager.initLoader(0, null, this)
     }
@@ -108,6 +114,10 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
         }
     }
 
+
+    private lateinit var fEmail: String
+
+    private lateinit var fClave: String
 
     /**
      * Attempts to sign in or register the account specified by the login form.
@@ -159,29 +169,20 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             db.collection("usuarios").get().addOnSuccessListener { snapshot ->
                 for (document in snapshot.documents) {
                     val data = document.data
-                    val editor=prefs!!.edit()
-                    editor.putInt("nivel",data["nivel"].toString().toInt())
+                    val editor = prefs!!.edit()
+                    editor.putInt("nivel", data["nivel"].toString().toInt())
                     editor.apply()
-                    val fEmail = data["correo"] as String
-                    val fClave = data["clave"] as String
+                    fEmail = data["correo"] as String
+                    fClave = data["clave"] as String
 
-                    Log.e("son: ", fEmail+fClave+" -> "+emailStr+passwordStr)
+                    Log.e("son: ", fEmail + fClave + " -> " + emailStr + passwordStr)
 
-                   validate(fEmail==emailStr && fClave==passwordStr)
+                    validate(fEmail == emailStr && fClave == passwordStr)
 
                 }
 
             }
-           /* db.collection("usuarios").document().get().addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                        validate(task.result.get("correo") == emailStr && task.result.get("clave") == passwordStr)
 
-
-
-
-                }
-
-            }*/
         }
 
 
@@ -190,6 +191,10 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
     private fun validate(valid: Boolean) {
         if (valid) {
             showProgress(false)
+            val editor = prefs!!.edit()
+            editor.putString("usuario", fEmail)
+            editor.putString("clave", fClave)
+
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         } else {

@@ -46,6 +46,7 @@ class AsignacionFragment : Fragment(), AsignacionCallback.View {
         recycler.layoutManager = LinearLayoutManager(context)
         presenter = AsignacionPresenter(this)
         fab = v.findViewById(R.id.fab_add_assign)
+
         shared = PreferenceManager.getDefaultSharedPreferences(context)
         Log.e("vale shred", "" + shared.getInt("nivel", 0))
         if (shared.getInt("nivel", 0) == 3) {

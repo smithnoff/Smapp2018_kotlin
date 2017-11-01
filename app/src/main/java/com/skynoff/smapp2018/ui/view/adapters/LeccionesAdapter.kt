@@ -1,12 +1,14 @@
 package com.skynoff.smapp2018.ui.view.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.skynoff.smapp2018.R
 import com.skynoff.smapp2018.background.firebase.models.Lessons
+import com.skynoff.smapp2018.ui.view.activities.ContenidosActivity
 import kotlinx.android.synthetic.main.item_lecciones_cv.view.*
 
 /**
@@ -25,6 +27,7 @@ class LeccionesAdapter(val context: Context, val listLesson: MutableList<Lessons
 
     override fun onBindViewHolder(holder: LeccionesViewHolder?, position: Int) {
         holder?.bindViews(listLesson[position])
+
     }
 
 
@@ -32,6 +35,9 @@ class LeccionesAdapter(val context: Context, val listLesson: MutableList<Lessons
         fun bindViews(lesson: Lessons) {
             itemView.tv_lec_title.text = lesson.nombre
             itemView.tv_lec_content.text = lesson.descripcion
+            itemView.setOnClickListener {
+                itemView.context.startActivity(Intent(itemView.context,ContenidosActivity::class.java))
+            }
         }
     }
 }
