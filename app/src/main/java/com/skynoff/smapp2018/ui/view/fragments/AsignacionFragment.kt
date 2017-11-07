@@ -65,7 +65,6 @@ class AsignacionFragment : Fragment(), AsignacionCallback.View {
         }
 
 
-
         return v
     }
 

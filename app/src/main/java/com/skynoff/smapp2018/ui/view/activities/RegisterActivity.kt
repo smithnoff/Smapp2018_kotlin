@@ -23,7 +23,7 @@ class RegisterActivity : AppCompatActivity(), RegisterCallback.View {
     lateinit var alias: TextInputEditText
     lateinit var registerBt: Button
     lateinit var presenter: RegisterCallback.Presenter
-     var user: Users=Users("","","",1,true)
+     var user: Users=Users("","","",1,true,"")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

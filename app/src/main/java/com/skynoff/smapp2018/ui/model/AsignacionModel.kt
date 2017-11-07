@@ -23,7 +23,8 @@ class AsignacionModel(var presenter: AsignacionCallback.Presenter) : AsignacionC
         db.collection("asignaciones").get().addOnSuccessListener { snapshot ->
             for (document in snapshot.documents) {
                 Log.e("Aqui el doc: ", document["nombre"].toString())
-                list.add(Assignments(document["descripcion"].toString()
+
+                list.add(Assignments(document.id,document["descripcion"].toString()
                         , document["fecha"].toString(),
                         document["nombre"].toString(),
                         (document["puntaje"] as Long).toInt(),

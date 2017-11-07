@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.skynoff.smapp2018.R
 import com.skynoff.smapp2018.background.firebase.models.Assignments
+import com.skynoff.smapp2018.ui.view.utils.CustomAlerts
 import kotlinx.android.synthetic.main.item_asignacion.view.*
 
 /**
@@ -34,12 +35,20 @@ class AsignacionAdapter(var context: Context, var list: List<Assignments>) : Rec
 
 
         fun bindView(asignacion: Assignments) {
-            itemView.tv_nombre.text = "Tipo: "+asignacion.nombre
-            itemView.tv_seccion.text ="seccion: "+ asignacion.seccion
+            itemView.tv_nombre.text = "Descripción: "+asignacion.nombre
+            itemView.tv_seccion.text ="Sección: "+ asignacion.seccion
             itemView.tv_tipo.text = "Tipo: "+asignacion.tipo
             itemView.tv_fecha.text ="Fecha: "+ asignacion.fecha
             itemView.tv_puntaje.text = asignacion.puntaje.toString()+"%"
+
+            itemView.setOnClickListener {
+                CustomAlerts.alertDeleteAsig(itemView.context,asignacion.id)
+
+
+
+            }
         }
+
 
     }
 

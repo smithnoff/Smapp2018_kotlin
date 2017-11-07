@@ -29,8 +29,8 @@
     <string name="tipo_propuestos">Ejercicios Propuestos</string>
     <string name="tipo_resueltos">Ejericios Resueltos</string>
     <string name="nivel_u">nivel</string>
-    <string name="txt_basic_lesson">Basico: ¿no sabes que es programar?, bueno este es tu nivel aqui aprenderas lo basico que te ayudara a entender todo.</string>
-    <string name="txt_middle_lesson">MEDIO: sabes declarar variables ya sumas y restas y estableces algunas condiciones, entonces estas listo este es tu nivel.</string>
-    <string name="txt_advanced_lesson">AVANZADO: para ti hacer programas usando condiciones y ciclos sin ningun problema no hay nada que te detenga ahora, bueno este nivel te hara ver cuanto realmente sabes.</string>
-    <string name="txt_expert_lesson">Ya manejas datos en una y dos dimensiones con ciclos y condiciones estas listo para esta leccion que te hara ver que tan cerca estas de el nivel supremo.</string>
+    <string name="txt_basic_lesson">Basico: ¿No sabes que es programar?, bueno este es tu nivel aqui aprenderas lo basico que te ayudara a entender todo.</string>
+    <string name="txt_middle_lesson">MEDIO: Sabes declarar variables ya sumas y restas y estableces algunas condiciones, entonces estas listo este es tu nivel.</string>
+    <string name="txt_advanced_lesson">AVANZADO: Para ti hacer programas usando condiciones y ciclos no es problema no hay nada que te detenga ahora, bueno este nivel te hara ver cuanto realmente sabes.</string>
+    <string name="txt_expert_lesson">EXPERTO: Ya manejas datos en una y dos dimensiones con ciclos y condiciones estas listo para esta leccion que te hara ver que tan cerca estas de el nivel supremo.</string>
 </resources>

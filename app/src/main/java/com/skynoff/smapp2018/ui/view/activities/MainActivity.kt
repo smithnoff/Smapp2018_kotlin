@@ -9,7 +9,7 @@ import com.skynoff.smapp2018.ui.view.fragments.EjerciciosFragment
 import com.skynoff.smapp2018.ui.view.fragments.NivelLeccionesFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import com.google.firebase.firestore.FirebaseFirestoreSettings
-
+import com.skynoff.smapp2018.background.database.SQLiteHelper
 
 
 class MainActivity : AppCompatActivity() {
@@ -48,6 +48,8 @@ class MainActivity : AppCompatActivity() {
         transaction=supportFragmentManager.beginTransaction()
         transaction.replace(R.id.fragment_container,fragment)
         transaction.commit()
+        val manager=SQLiteHelper.getInstance(this)
+        manager.getTipoExamen()
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    android:textColor="@color/colorAccent"
+    android:hint="Seleccione"
+    android:textColorHint="@color/colorAccent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:gravity="center_vertical"
+    android:paddingStart="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="15dip"
+    android:paddingEnd="15dip"
+    android:ellipsize="marquee"
+    android:textSize="18sp"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

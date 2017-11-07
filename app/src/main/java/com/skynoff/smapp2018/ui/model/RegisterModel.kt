@@ -24,6 +24,7 @@ class RegisterModel : RegisterCallback.Model {
         map.put("correo",user.email)
         map.put("habilitado",user.habilitado)
         map.put("nivel",user.nivel)
+        map.put("seccion",user.seccion)
 
         db.collection("usuarios").document().set(map).addOnCompleteListener {
             presenter.showResults()
