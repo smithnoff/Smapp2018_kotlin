@@ -1,9 +1,7 @@
 package com.skynoff.smapp2018.ui.view.utils
 
 import android.support.design.widget.TextInputEditText
-import android.text.InputType
 import com.skynoff.smapp2018.R
-import kotlinx.android.synthetic.main.activity_register.view.*
 
 /**
  * Created by cesar.smith on 10/18/2017.
@@ -20,7 +18,7 @@ companion object {
                 it.requestFocus()
          isValid=true
             }
-            if(it.id== R.id.tet_email ){
+            if(it.id== R.id.tet_name){
                isValid= android.util.Patterns.EMAIL_ADDRESS.matcher(it.text.toString()).matches()
                 it.error = "Email invalido."
 

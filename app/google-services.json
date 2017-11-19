@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "841292697962",
+    "firebase_url": "https://smappc17.firebaseio.com",
+    "project_id": "smappc17",
+    "storage_bucket": "smappc17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:841292697962:android:d5a42f1e13369efc",
+        "android_client_info": {
+          "package_name": "com.skynoff.smapp2018"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "841292697962-67blrc3bqmikpfb66m6vvaoqga3kj36h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skynoff.smapp2018",
+            "certificate_hash": "b9ac58c446a730bcd8eee8587cfe27a028683a39"
+          }
+        },
+        {
+          "client_id": "841292697962-atuhpl800pd5ap24uljrsfo6sp9ik7fk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlDMeHs6-YoN-JtXBCc_tCV9Tf8VmO260"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "841292697962-atuhpl800pd5ap24uljrsfo6sp9ik7fk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

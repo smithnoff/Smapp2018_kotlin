@@ -1,19 +1,15 @@
 package com.skynoff.smapp2018.ui.view.activities
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.TextInputEditText
-import android.util.Log
-import android.widget.ArrayAdapter
+import android.support.v7.app.AppCompatActivity
 import android.widget.Button
 import android.widget.Spinner
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
 import com.skynoff.smapp2018.R
-import com.skynoff.smapp2018.R.id.snap
-import com.skynoff.smapp2018.background.database.SQLiteHelper
 import com.skynoff.smapp2018.ui.presenter.callbacks.CrearAsignacionCallback
 import com.skynoff.smapp2018.ui.presenter.interactors.CrearAsignacionPresenter
+import com.skynoff.smapp2018.ui.view.utils.CustomSpinners
+import com.skynoff.smapp2018.ui.view.utils.PickersDialogs
 import org.jetbrains.anko.longToast
 
 class CrearAsignacionActivity : AppCompatActivity(), CrearAsignacionCallback.View {
@@ -33,13 +29,12 @@ class CrearAsignacionActivity : AppCompatActivity(), CrearAsignacionCallback.Vie
         setContentView(R.layout.activity_crear_asignacion)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        descripcion = findViewById(R.id.tet_name)
-        fecha = findViewById(R.id.tet_last_name)
-        nombre = findViewById(R.id.tet_email)
-        puntaje = findViewById(R.id.tet_password)
+        descripcion = findViewById(R.id.tet_descripcion)
+        fecha = findViewById(R.id.tet_date)
+        nombre = findViewById(R.id.tet_name)
+        puntaje = findViewById(R.id.tet_value)
         seccion = findViewById(R.id.tet_section)
-        tipo = findViewById(R.id.tet_section)
-        tipoEval = findViewById(R.id.sp_tipo_eval)
+        tipo = findViewById(R.id.tet_evaluation_type)
         registerBt = findViewById(R.id.bt_register)
         presenter = CrearAsignacionPresenter(this)
 
@@ -54,15 +49,15 @@ class CrearAsignacionActivity : AppCompatActivity(), CrearAsignacionCallback.Vie
             asignacion.put("tipo", tipoEval.selectedItem.toString())
             presenter.createAsign(asignacion)
         }
-       val db=FirebaseFirestore.getInstance()
-        db.collection("tipo_examen").get().addOnCompleteListener {
-            val sqdb=SQLiteHelper.getInstance(this)
-/*
-            val adp= ArrayAdapter(this,android.R.layout.simple_spinner_item,it.result.documents.toList())
-*/
-            val adp= ArrayAdapter(this,R.layout.item_spinner,sqdb.getTipoExamen())
-            tipoEval.adapter=adp
+
+        tipo.setOnClickListener {
+           CustomSpinners.tipoExamenSpinner(this,tipo)
         }
+        fecha.setOnClickListener {
+            PickersDialogs.setEvalDate(this,fecha)
+        }
+
+
     }
 
     override fun showResults() {

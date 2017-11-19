@@ -1,42 +1,35 @@
 package com.skynoff.smapp2018.ui.view.activities
 
+import android.Manifest.permission.READ_CONTACTS
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.annotation.TargetApi
-import android.content.pm.PackageManager
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.app.LoaderManager.LoaderCallbacks
+import android.content.CursorLoader
+import android.content.Intent
+import android.content.Loader
+import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.provider.ContactsContract
+import android.support.design.widget.Snackbar
+import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import android.widget.TextView
-
-import java.util.ArrayList
-import android.Manifest.permission.READ_CONTACTS
-import android.content.*
-import android.preference.PreferenceManager
-import android.support.annotation.NonNull
-import android.support.v4.content.ContextCompat.startActivity
-import android.util.Log
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
-import com.google.firebase.iid.FirebaseInstanceIdService
 import com.skynoff.smapp2018.R
-import com.skynoff.smapp2018.R.id.*
 import com.skynoff.smapp2018.background.firebase.methods.PushNotifications
-import com.skynoff.smapp2018.background.firebase.models.Users
-
 import kotlinx.android.synthetic.main.activity_login.*
+import java.util.*
 
 /**
  * A login screen that offers login via nombre/puntaje.
@@ -70,7 +63,7 @@ class LoginActivity : AppCompatActivity(), LoaderCallbacks<Cursor> {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
         val push = PushNotifications()
-        push.onTokenRefresh()
+//        push.onTokenRefresh()
         startActivity(Intent(this, MainActivity::class.java))
 
         email_sign_in_button.setOnClickListener { attemptLogin() }

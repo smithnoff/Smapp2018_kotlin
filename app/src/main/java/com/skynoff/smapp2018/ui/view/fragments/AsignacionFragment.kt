@@ -1,7 +1,6 @@
 package com.skynoff.smapp2018.ui.view.fragments
 
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -14,15 +13,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-
 import com.skynoff.smapp2018.R
 import com.skynoff.smapp2018.background.firebase.models.Assignments
 import com.skynoff.smapp2018.ui.presenter.callbacks.AsignacionCallback
 import com.skynoff.smapp2018.ui.presenter.interactors.AsignacionPresenter
 import com.skynoff.smapp2018.ui.view.activities.CrearAsignacionActivity
 import com.skynoff.smapp2018.ui.view.adapters.AsignacionAdapter
-import com.skynoff.smapp2018.ui.view.utils.TextValidator
 
 
 /**
@@ -53,7 +49,7 @@ class AsignacionFragment : Fragment(), AsignacionCallback.View {
             fab.visibility = View.VISIBLE
 
         } else {
-            fab.visibility = View.GONE
+          //  fab.visibility = View.GONE
 
         }
 

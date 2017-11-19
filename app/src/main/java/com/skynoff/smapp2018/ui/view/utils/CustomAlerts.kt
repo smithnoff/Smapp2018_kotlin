@@ -6,11 +6,8 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 import com.skynoff.smapp2018.ui.view.activities.MainActivity
-import org.jetbrains.anko.ctx
 
 /**
  * Created by cesar.smith on 11/5/2017.
@@ -35,6 +32,7 @@ class CustomAlerts {
             }).setNegativeButton("No", null).create().show()
 
         }
+
 
 
     }

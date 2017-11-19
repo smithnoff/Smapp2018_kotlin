@@ -2,10 +2,8 @@ package com.skynoff.smapp2018.background.database
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
-import com.skynoff.smapp2018.R.id.snap
 import org.jetbrains.anko.db.*
 
 /**
@@ -50,10 +48,10 @@ class SQLiteHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, name = "Smappc2"
             }
         }
     }
-    fun getTipoExamen():List<String>{
+    fun getTipoExamen():MutableList<String>{
    Log.e("VERSION",this.readableDatabase.path)
 
-        return this.readableDatabase.select(tablaTipoExamen,"name").parseList(StringParser)
+        return this.readableDatabase.select(tablaTipoExamen,"name").parseList(StringParser).toMutableList()
 
     }
 
