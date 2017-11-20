@@ -26,10 +26,29 @@ class CustomSpinners {
             var titulo = dialog.findViewById<TextView>(R.id.dialog_title)
             var lista = dialog.findViewById<ListView>(R.id.dialog_list)
 
-            titulo.setText("Seleccione tipo de evaluacion ")
+            titulo.setText("Seleccione ")
             lista.adapter = ArrayAdapter<String>(activity, android.R.layout.select_dialog_item, SQLiteHelper.getInstance(activity).getTipoExamen())
             lista.setOnItemClickListener { adapterView, view, i, l ->
                 input.setText(adapterView.getItemAtPosition(i).toString())
+                dialog.dismiss()
+            }
+
+            dialog.show()
+        }
+
+        fun asignaturaSpinner(activity: Activity, editText: TextInputEditText?) {
+            val dialog = Dialog(activity)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setContentView(R.layout.dialog_custom_spinner)
+
+
+            var titulo = dialog.findViewById<TextView>(R.id.dialog_title)
+            var lista = dialog.findViewById<ListView>(R.id.dialog_list)
+
+            titulo.setText("Seleccione ")
+            lista.adapter = ArrayAdapter<String>(activity, android.R.layout.select_dialog_item, SQLiteHelper.getInstance(activity).getAsignaturas())
+            lista.setOnItemClickListener { adapterView, view, i, l ->
+                editText?.setText(adapterView.getItemAtPosition(i).toString())
                 dialog.dismiss()
             }
 

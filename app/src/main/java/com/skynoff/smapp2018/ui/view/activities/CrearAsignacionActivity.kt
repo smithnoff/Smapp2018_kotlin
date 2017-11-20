@@ -19,6 +19,7 @@ class CrearAsignacionActivity : AppCompatActivity(), CrearAsignacionCallback.Vie
     lateinit var fecha: TextInputEditText
     lateinit var nombre: TextInputEditText
     lateinit var puntaje: TextInputEditText
+    lateinit var asignatura: TextInputEditText
     lateinit var seccion: TextInputEditText
     lateinit var tipo: TextInputEditText
     lateinit var registerBt: Button
@@ -33,6 +34,7 @@ class CrearAsignacionActivity : AppCompatActivity(), CrearAsignacionCallback.Vie
         fecha = findViewById(R.id.tet_date)
         nombre = findViewById(R.id.tet_name)
         puntaje = findViewById(R.id.tet_value)
+        asignatura = findViewById(R.id.tet_asignatura)
         seccion = findViewById(R.id.tet_section)
         tipo = findViewById(R.id.tet_evaluation_type)
         registerBt = findViewById(R.id.bt_register)
@@ -48,6 +50,9 @@ class CrearAsignacionActivity : AppCompatActivity(), CrearAsignacionCallback.Vie
             asignacion.put("seccion", seccion.text.toString().toInt())
             asignacion.put("tipo", tipoEval.selectedItem.toString())
             presenter.createAsign(asignacion)
+        }
+        asignatura.setOnClickListener{
+            CustomSpinners.asignaturaSpinner(this,asignatura)
         }
 
         tipo.setOnClickListener {
