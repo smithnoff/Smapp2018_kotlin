@@ -1,11 +1,7 @@
 package com.skynoff.smapp2018.ui.model
 
 import android.util.Log
-import com.google.android.gms.tasks.Task
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.skynoff.smapp2018.R.id.snap
-import com.skynoff.smapp2018.background.firebase.models.Assignments
 import com.skynoff.smapp2018.background.firebase.models.Lessons
 import com.skynoff.smapp2018.ui.presenter.callbacks.LeccionesCallback
 
@@ -51,7 +47,8 @@ class LeccionesModel(var presenter: LeccionesCallback.Presenter) : LeccionesCall
             Log.e("el valor en fire:",""+snapshot.result.size())
 
             for (documents in snapshot.result) {
-                list.add(Lessons(documents["nombre"] as String, documents["descripcion"] as String))
+                Log.e("ID mil", documents.id)
+                list.add(Lessons(documents.id,documents["nombre"] as String, documents["descripcion"] as String))
             }
             presenter.setLesson(list)
         }

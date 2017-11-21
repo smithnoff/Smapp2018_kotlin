@@ -36,7 +36,7 @@ class LeccionesAdapter(val context: Context, val listLesson: MutableList<Lessons
             itemView.tv_lec_title.text = lesson.nombre
             itemView.tv_lec_content.text = lesson.descripcion
             itemView.setOnClickListener {
-                itemView.context.startActivity(Intent(itemView.context,ContenidosActivity::class.java))
+                itemView.context.startActivity(Intent(itemView.context,ContenidosActivity::class.java).putExtra("lecId",lesson.id))
             }
         }
     }

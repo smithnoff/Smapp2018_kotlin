@@ -9,7 +9,7 @@ import org.jetbrains.anko.db.*
 /**
  * Created by cesar.smith on 11/1/2017.
  */
-class SQLiteHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, name = "Smappc3", factory = null, version = 1) {
+class SQLiteHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, name = "Smappc4", factory = null, version = 1) {
     val tablaSecciones: String = "secciones"
     val tablaLecciones: String = "lecciones"
     val tablaAsignaturas: String = "asignaturas"
@@ -31,6 +31,7 @@ class SQLiteHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, name = "Smappc3"
                  "name" to TEXT)
         db.createTable(tablaSecciones,true,"uid" to INTEGER + PRIMARY_KEY + UNIQUE ,"asignatura" to TEXT,
                  "seccion" to TEXT)
+        db.createTable(tablaAsignaturas,true,"uid" to INTEGER + PRIMARY_KEY + UNIQUE ,"name" to TEXT)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
@@ -57,7 +58,9 @@ class SQLiteHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, name = "Smappc3"
             snap->
             for (tipo in snap.result)
             {
-               db.collection("asignaturas").document(tipo.id).collection("secciones").get().addOnCompleteListener {
+                this.writableDatabase.insert(tablaAsignaturas,"name" to tipo.id)
+
+                        db.collection("asignaturas").document(tipo.id).collection("secciones").get().addOnCompleteListener {
                    secc->
                    for (seccID in secc.result){
                        Log.e("secciones=", seccID.id)
@@ -69,21 +72,22 @@ class SQLiteHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, name = "Smappc3"
         }
     }
     fun getTipoExamen():MutableList<String>{
-   Log.e("VERSION",this.readableDatabase.path)
+   Log.e("VERSION ",this.readableDatabase.version.toString())
 
         return this.readableDatabase.select(tablaTipoExamen,"name").parseList(StringParser).toMutableList()
 
     }
     fun getAsignaturas():MutableList<String>{
-   Log.e("VERSION",this.readableDatabase.path)
+   Log.e("VERSION ",this.readableDatabase.version.toString())
 
-        return this.readableDatabase.select(tablaSecciones,"asignatura").parseList(StringParser).toMutableList()
+        return this.readableDatabase.select(tablaAsignaturas,"name").parseList(StringParser).toMutableList()
 
     }
 
    fun deleteTipoEx(){
        this.writableDatabase.delete(tablaTipoExamen)
        this.writableDatabase.delete(tablaSecciones)
+       this.writableDatabase.delete(tablaAsignaturas)
    }
 
 }

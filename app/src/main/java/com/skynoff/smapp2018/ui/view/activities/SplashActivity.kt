@@ -15,7 +15,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         var manager = SQLiteHelper(this)
-        //manager.deleteTipoEx()
+        manager.deleteTipoEx()
         manager.insertData()
         manager.insertSecciones()
         Handler().postDelayed(
